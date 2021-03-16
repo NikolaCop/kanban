@@ -8,6 +8,7 @@ export class BoardsController extends BaseController {
     super('api/boards')
     this.router
       .get('', this.getAll)
+      .get('/:id', this.getOne)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
       .delete('/:id', this.delete)
@@ -18,6 +19,14 @@ export class BoardsController extends BaseController {
   async getAll(req, res, next) {
     try {
       return res.send(await boardsService.find(req.query))
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getOne(req, res, next) {
+    try {
+      return res.send(await boardsService.findById(req.params.id))
     } catch (error) {
       next(error)
     }
