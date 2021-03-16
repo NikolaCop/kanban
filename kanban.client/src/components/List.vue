@@ -3,10 +3,10 @@
     <div class="card">
       <div class="card-header d-flex justify-content-between">
         <h5>{{ list.description }}</h5>
-        <i type="button" data-toggle="modal" :data-target="'#create-task'+ list.id" class="fas fa-plus-circle"></i>
+        <i type="button" id="plusButton" data-toggle="modal" :data-target="'#create-task'+ list.id" class="fas fa-plus-circle"></i>
       </div>
       <CreateTaskModal :list-data="list" />
-      <div class="card-body">
+      <div class="card-body scroll">
         <i class="fas fa-spinner fa-spin" v-if="state.loading"></i>
         <Task v-else v-for="task in state.tasks" :key="task._id" :task="task" />
       </div>
@@ -41,3 +41,15 @@ export default {
   components: {}
 }
 </script>
+<style>
+.scroll {
+  /* min-height: 1vh; */
+  overflow-y: auto;
+}
+.card{
+  height: max-content;
+}
+#plusButton{
+  color: rgb(4, 160, 51);
+}
+</style>
