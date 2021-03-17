@@ -1,5 +1,5 @@
 <template>
-  <div class="board col-3">
+  <div class="board col-3 mx-3">
     <div class="card" style="width: 18rem;">
       <div class="box">
         <div class="row text-center">
@@ -20,7 +20,6 @@
 <script>
 import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
-// import { boardsService } from '../services/BoardsService'
 export default {
   name: 'Board',
   props: {
@@ -39,12 +38,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .card {
   position: relative;
-  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
-    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
-    5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
+  background-color: transparent;
   border-radius: 15px;
   margin: 30px;
   min-width: 320px;
@@ -63,6 +60,7 @@ export default {
   border-radius: 15px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   transition: 0.5s;
+  background-color: aquamarine;
 }
 .box:hover {
   transform: rotateX(21deg);

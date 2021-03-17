@@ -2,7 +2,7 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 class CommentsService {
   async find(query = {}) {
-    return await dbContext.Comment.find(query)
+    return await dbContext.Comment.find(query).populate('creatorId')
   }
 
   async create(body) {

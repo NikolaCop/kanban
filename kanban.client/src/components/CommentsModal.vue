@@ -88,11 +88,9 @@ export default {
       async createComment() {
         try {
           $('#create-comment').modal('hide')
-
-          state.newComment.board = state.board
+          state.newComment.task = props.task
           state.newComment.user = state.user
           await commentsService.createComment(state.newComment)
-
           state.newComment = {}
         } catch (error) {
           logger.log(error)

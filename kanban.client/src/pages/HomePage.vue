@@ -1,6 +1,23 @@
 <template>
-  <div class="home-page container">
-    <Board v-for="board in state.boards" :key="board.id" :board="board" />
+  <div class="home-page container-fluid">
+    <div class="row">
+      <div v-if="state.user.isAuthenticated" class="row">
+        <div class="col text-center">
+          <button
+            type="button"
+            class="btn btn-primary btn-lg"
+            data-toggle="modal"
+            data-target="#create-board"
+          >
+            Create A Board
+          </button>
+          <CreateBoardModal />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <Board v-for="board in state.boards" :key="board.id" :board="board" />
+    </div>
   </div>
 </template>
 

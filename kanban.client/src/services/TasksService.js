@@ -20,6 +20,11 @@ class TasksService {
       logger.log(error)
     }
   }
+
+  async deleteTask(id, listId) {
+    await api.delete(`api/tasks/${id}`)
+    this.getTasks(listId)
+  }
 }
 
 export const tasksService = new TasksService()

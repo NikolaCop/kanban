@@ -2,7 +2,7 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 class BoardsService {
   async find(query = {}) {
-    return await dbContext.Board.find(query)
+    return await dbContext.Board.find(query).populate('creatorId')
   }
 
   async findById(id) {

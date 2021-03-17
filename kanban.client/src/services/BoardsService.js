@@ -10,6 +10,16 @@ class BoardsService {
     logger.log(AppState.boards)
   }
 
+  async createBoard(boardData) {
+    try {
+      const res = await api.post('api/boards', boardData)
+      AppState.boards.push(res.data)
+      return res.data.id
+    } catch (error) {
+      logger.log(error)
+    }
+  }
+
   async getBoard(id) {
     try {
       const res = await api.get('api/boards/' + id)
@@ -19,13 +29,8 @@ class BoardsService {
     }
   }
 
-  async getBoardLists(id) {
-    try {
-      const res = await api.get('api/boards/' + id + '/lists')
-      AppState.lists = res.data
-    } catch (error) {
-      logger.log(error)
-    }
+  async deleteBoard(id) {
+    await api.delete(`api/boards/${id}`)
   }
 }
 

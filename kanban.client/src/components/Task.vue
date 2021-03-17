@@ -2,6 +2,8 @@
   <div class="task text-center">
     <div>
       <h5>{{ task.description }}</h5>
+      <i type="button" class="fas fa-times-circle text-danger" @click="deleteTask"></i>
+
       <button type="button" class="btn btn-flat btn-sm" data-toggle="modal" :data-target="'#comments'+ task.id">
         See Comments
       </button>
@@ -14,9 +16,14 @@
 import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { commentsService } from '../services/CommentsService'
+import { tasksService } from '../services/TasksService'
+
 export default {
   name: 'Task',
-  props: { task: { type: Object, required: true } },
+  props: {
+    task: { type: Object, required: true },
+    list: { type: Object, required: true }
+  },
   setup(props) {
     const state = reactive({
       tasks: computed(() => AppState.tasks),
@@ -29,7 +36,10 @@ export default {
       await commentsService.getComments(props.task.id)
     })
     return {
-      state
+      state,
+      async deleteTask() {
+        await tasksService.deleteTask(props.task.id, props.list.id)
+      }
     }
   },
   components: {}
