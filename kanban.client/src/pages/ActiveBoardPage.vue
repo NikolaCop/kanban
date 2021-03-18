@@ -1,7 +1,7 @@
 <template>
   <div v-if="state.board.creatorId && state.user" class="activeboardpage container-fluid">
-    <div class="row justify-content-center">
-    <i v-if="state.user.email == state.board.creatorId.email" type="button" class="fas fa-minus-circle" @click="deleteBoard"></i>
+    <div class="row justify-content-center p-3">
+      <i v-if="state.user.email == state.board.creatorId.email" type="button" class="fas fa-minus-circle" @click="deleteBoard"></i>
       <h1 id="titleText">
         {{ state.board.title }}
       </h1>
