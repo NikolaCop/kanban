@@ -10,7 +10,9 @@
           </div>
           <div class="col-12 mt-5">
             <router-link :to="{name: 'ActiveBoardPage', params: { id: board.id }}">
-              <button>Go to board page</button>
+              <button type="button" class="btn btn-primary">
+                Go to board page <i class="fas fa-chevron-right"></i>
+              </button>
             </router-link>
           </div>
         </div>
@@ -62,7 +64,7 @@ export default {
   border-radius: 15px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   transition: 0.5s;
-  background-image: url('https://c4.wallpaperflare.com/wallpaper/149/547/831/violet-gradient-abstract-wallpaper-preview.jpg');
+  background-image: url('https://images7.alphacoders.com/585/thumb-350-585932.png');
   background-size: cover;
 }
 .box:hover {

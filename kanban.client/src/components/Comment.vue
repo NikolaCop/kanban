@@ -1,8 +1,16 @@
 <template>
   <div class="comment">
-    <h1>{{ comment.description }}</h1>
-    <h5>{{ comment.creatorId.email }}</h5>
-    <i v-if="state.user.email == comment.creatorId.email" type="button" class="fas fa-times-circle text-danger" @click="deleteComment"></i>
+    <div class="row">
+      <div class="col-10">
+        <h4><b>{{ comment.description }}</b></h4>
+      </div>
+      <div class="col-2">
+        <i v-if="state.user.email == comment.creatorId.email" type="button" class="fas fa-times-circle text-danger mt-2 ml-4" @click="deleteComment"></i>
+      </div>
+    </div>
+    <div class="row ml-1">
+      <p><i>{{ comment.creatorId.email }}</i></p>
+    </div>
   </div>
 </template>
 

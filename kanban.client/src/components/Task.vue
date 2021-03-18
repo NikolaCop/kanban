@@ -1,11 +1,17 @@
 <template>
-  <div class="task text-center">
+  <div class="task">
     <div>
-      <h5>{{ task.description }}</h5>
-      <i v-if="state.user.email == task.creatorId.email" type="button" class="fas fa-times-circle text-danger" @click="deleteTask"></i>
+      <div class="row">
+        <div class="col-10">
+          <h5>{{ task.description }}</h5>
+        </div>
+        <div class="col-2 text-end">
+          <i v-if="state.user.email == task.creatorId.email" type="button" class="fas fa-times-circle text-danger" @click="deleteTask"></i>
+        </div>
+      </div>
 
-      <button type="button" class="btn btn-flat btn-sm" data-toggle="modal" :data-target="'#comments'+ task.id">
-        See Comments
+      <button id="commentButton" type="button" class="btn btn-info btn-sm" data-toggle="modal" :data-target="'#comments'+ task.id">
+        <i class="far fa-comment-dots"></i>
       </button>
     </div>
     <CommentsModal :task="task.id" :comments="state.comments" />
@@ -46,3 +52,9 @@ export default {
   components: {}
 }
 </script>
+
+<style scoped>
+#commentButton{
+  border-radius: 50px;
+}
+</style>

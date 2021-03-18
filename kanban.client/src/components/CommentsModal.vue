@@ -11,9 +11,9 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">
+            <h2 class="modal-title">
               Comments
-            </h5>
+            </h2>
             <button
               type="button"
               class="close"
@@ -27,7 +27,7 @@
             <i class="fas fa-spinner fa-spin" v-if="state.loading"></i>
             <Comment v-else v-for="comment in comments" :key="comment._id" :comment="comment" />
           </div>
-          <div class="modal-footer justify-content-center">
+          <div class="modal-footer justify-content-center" id="modalFooter">
             <form @submit.prevent="createComment">
               <div class="form-group">
                 <input
@@ -35,21 +35,14 @@
                   name="description"
                   id="description"
                   class="form-control"
-                  placeholder="Enter comment description..."
+                  placeholder="Enter comment..."
                   aria-describedby="helpId"
                   v-model="state.newComment.description"
                 />
               </div>
             </form>
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button class="btn btn-success" @click="createComment">
-              Create
+            <button class="btn btn-primary mb-4 ml-2" id="commentButton" @click="createComment">
+              <i class="fas fa-comment"></i>
             </button>
           </div>
         </div>
@@ -102,4 +95,26 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+#commentButton{
+  border-radius: 50px
+}
+#description{
+  border-radius: 50px;
+  width: 350px;
+}
+
+#modalFooter{
+  background-image: url('https://i.pinimg.com/originals/b6/1a/6c/b61a6cf83ad7755c1e377888b1d75943.gif');
+  background-size: cover;
+}
+.modal-header{
+  background-image: url('https://ak.picdn.net/shutterstock/videos/1057395205/thumb/11.jpg?ip=x480');
+  background-size: cover;
+}
+.modal-title{
+  color: white;
+}
+.close{
+  color: red
+}
 </style>

@@ -1,13 +1,9 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg" id="navBar">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img
-          alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
-        />
-      </div>
+      <h2 class="mt-1" id="title">
+        Kahn || Bahn
+      </h2>
     </router-link>
     <button
       class="navbar-toggler"
@@ -24,7 +20,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link :to="{ name: 'Home' }" class="nav-link">
-            Home
+            <i class="fas fa-home"></i>
           </router-link>
         </li>
         <!-- <li class="nav-item">
@@ -103,6 +99,9 @@ export default {
 </script>
 
 <style scoped>
+#title{
+  color: white;
+}
 .dropdown-menu {
   user-select: none;
   display: block;
@@ -123,5 +122,12 @@ a:hover {
 }
 .nav-item .nav-link.router-link-exact-active{
   color: var(--primary);
+}
+#navBar{
+  background-image: url('https://i.pinimg.com/originals/b6/1a/6c/b61a6cf83ad7755c1e377888b1d75943.gif');
+  background-size: cover;
+}
+#homeButton{
+  color: black;
 }
 </style>

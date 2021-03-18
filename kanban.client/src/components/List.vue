@@ -1,21 +1,25 @@
 <template>
-  <div class="list col-4">
+  <div class="list col-4" v-if="list.creatorId && state.user">
     <!-- :@drop="onDrop(list.id)"
       @dragenter.prevent
       @dragover.prevent -->
     <div
       class="card"
     >
-      <div class="card-header d-flex justify-content-between">
-        <h5>{{ list.description }}</h5>
-        <i
-          type="button"
-          id="plusButton"
-          data-toggle="modal"
-          :data-target="'#create-task' + list.id"
-          class="fas fa-plus-circle"
-        ></i>
-        <i v-if="state.user.email == list.creatorId.email" type="button" class="fas fa-minus-circle" @click="deleteList"></i>
+      <div class="card-header d-flex justify-content-between" id="taskHeader">
+        <h5 id="whiteText">
+          {{ list.description }}
+        </h5>
+        <div class="col-3">
+          <i
+            type="button"
+            id="plusButton"
+            data-toggle="modal"
+            :data-target="'#create-task' + list.id"
+            class="fas fa-plus-circle px-3"
+          ></i>
+          <i v-if="state.user.email == list.creatorId.email" id="deleteButton" type="button" class="fas fa-minus-circle" @click="deleteList"></i>
+        </div>
       </div>
       <CreateTaskModal :list-data="list" />
       <div class="card-body scroll">
@@ -95,5 +99,15 @@ export default {
 }
 #plusButton {
   color: rgb(4, 160, 51);
+}
+#taskHeader{
+  background-image: url('https://t4.ftcdn.net/jpg/03/08/62/45/360_F_308624545_xX0aovP5qCOeRQGT7AwhKZr8HbHKlMBZ.jpg');
+  background-size: cover;
+}
+#whiteText{
+  color: white;
+}
+#deleteButton{
+  color: red;
 }
 </style>

@@ -5,11 +5,6 @@
   <main>
     <router-view />
   </main>
-  <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
-    </div>
-  </footer>
 </template>
 
 <script>
@@ -27,4 +22,14 @@ export default {
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
+::-webkit-scrollbar{
+  background: black;
+  width: 0px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb{
+   background-image: url('https://i.pinimg.com/originals/b6/1a/6c/b61a6cf83ad7755c1e377888b1d75943.gif');
+   background-size: cover;
+  border-radius: 50px;
+}
 </style>
