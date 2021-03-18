@@ -1,10 +1,10 @@
 <template>
   <div class="list col-4">
+    <!-- :@drop="onDrop(list.id)"
+      @dragenter.prevent
+      @dragover.prevent -->
     <div
       class="card"
-      :@drop="onDrop($event, list.id)"
-      @dragenter.prevent
-      @dragover.prevent
     >
       <div class="card-header d-flex justify-content-between">
         <h5>{{ list.description }}</h5>
@@ -15,19 +15,19 @@
           :data-target="'#create-task' + list.id"
           class="fas fa-plus-circle"
         ></i>
-        <i type="button" class="fas fa-minus-circle" @click="deleteList"></i>
+        <i v-if="state.user.email == list.creatorId.email" type="button" class="fas fa-minus-circle" @click="deleteList"></i>
       </div>
       <CreateTaskModal :list-data="list" />
       <div class="card-body scroll">
         <i class="fas fa-spinner fa-spin" v-if="state.loading"></i>
+        <!-- draggable="true"
+          @dragstart="startDrag(task)" -->
         <Task
           v-else
           v-for="task in state.tasks"
           :key="task._id"
           :list="list"
           :task="task"
-          draggable="true"
-          @dragstart="startDrag($event, task)"
         />
       </div>
     </div>
@@ -55,9 +55,8 @@ export default {
       newTask: {}
     })
     // NOTE figure out how to apply the ref, what data to pass in, and how, and where to apply it
-    // const task = ref([state.tasks[props.list.id]])
-
-    onMounted(async () => {
+    // const task = ref([state.tasks[.list.id]])
+    onMounted(async() => {
       await tasksService.getTasks(props.list.id)
       state.loading = false
     })
@@ -66,17 +65,21 @@ export default {
       route,
       async deleteList() {
         await listsService.deleteList(props.list.id, route.params.id)
-      },
-      startDrag(event, task) {
-        event.dataTransfer.dropEffect = 'move'
-        event.dataTransfer.effectAllowed = 'move'
-        event.dataTransfer.setData('itemId', task.id)
-      },
-      onDrop(event, list) {
-        const itemId = event.dataTransfer.getData('itemId')
-        const task = tasks.value.find((task) => task.id == itemId)
-        task.list = list
       }
+      // NOTE figure out drag and drop you peices of shit
+      // startDrag(task) {
+      //   event.dataTransfer.dropEffect = 'move'
+      //   event.dataTransfer.effectAllowed = 'move'
+      //   event.dataTransfer.setData('taskId', event.target.id)
+      //   console.log(event)
+      //   console.log(task)
+      // },
+      // onDrop(list) {
+      //   console.log(event)
+      //   const taskId = event.dataTransfer.getData('taskId')
+      //   const task = state.tasks.value.find((task) => task._id === taskId)
+      //   task.list = list
+      // }
     }
   },
   components: {}

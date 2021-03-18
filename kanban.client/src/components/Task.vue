@@ -2,7 +2,7 @@
   <div class="task text-center">
     <div>
       <h5>{{ task.description }}</h5>
-      <i type="button" class="fas fa-times-circle text-danger" @click="deleteTask"></i>
+      <i v-if="state.user.email == task.creatorId.email" type="button" class="fas fa-times-circle text-danger" @click="deleteTask"></i>
 
       <button type="button" class="btn btn-flat btn-sm" data-toggle="modal" :data-target="'#comments'+ task.id">
         See Comments
@@ -28,7 +28,8 @@ export default {
     const state = reactive({
       tasks: computed(() => AppState.tasks),
       user: computed(() => AppState.user),
-      comments: computed(() => AppState.comments[props.task.id])
+      comments: computed(() => AppState.comments[props.task.id]),
+      board: computed(() => AppState.activeBoard)
 
     })
 

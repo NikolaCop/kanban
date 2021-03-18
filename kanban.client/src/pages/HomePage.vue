@@ -1,11 +1,11 @@
 <template>
   <div class="home-page container-fluid">
-    <div class="row">
+    <div class="row justify-content-center p-3">
       <div v-if="state.user.isAuthenticated" class="row">
         <div class="col text-center">
           <button
             type="button"
-            class="btn btn-primary btn-lg"
+            class="btn btn-info btn-lg"
             data-toggle="modal"
             data-target="#create-board"
           >
